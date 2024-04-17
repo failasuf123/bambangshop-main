@@ -105,3 +105,12 @@ This is the place for you to write reflections:
     Kekurangan:
       - Penundaan Respons: Jika terdapat banyak pelanggan yang menarik data secara bersamaan, dapat terjadi penundaan dalam respons karena pengirim harus menanggapi permintaan setiap pelanggan.
       - Kesulitan Sinkronisasi: Mengelola keadaan sinkronisasi antara pengirim dan pelanggan dalam model Pull dapat lebih rumit, terutama jika terdapat perubahan serentak yang harus disampaikan kepada banyak pelanggan.
+
+
+3. Jika kita memutuskan untuk tidak menggunakan multi-threading dalam proses notifikasi, maka proses notifikasi akan dijalankan secara serial, artinya notifikasi akan dikirimkan ke setiap pelanggan satu per satu. Hal ini dapat mengakibatkan beberapa masalah:
+
+ - Kinerja yang Lambat: Proses notifikasi akan menjadi lambat karena harus menunggu hingga notifikasi sebelumnya selesai dikirim sebelum melanjutkan ke pelanggan berikutnya.
+ - Potensi Blokade: Jika ada pelanggan yang memiliki koneksi lambat atau mengalami kegagalan koneksi, hal ini dapat memblokir proses notifikasi untuk pelanggan lainnya.
+ - Resiko Kesalahan: Dalam skenario serial, resiko kesalahan dapat meningkat karena setiap kesalahan pada satu pelanggan dapat mempengaruhi pelanggan lainnya dalam antrian notifikasi.
+ 
+Penggunaan multi-threading dapat membantu mengatasi masalah ini dengan mengizinkan proses notifikasi untuk berjalan secara paralel, mempercepat waktu respons, dan meminimalkan potensi blokade atau kesalahan yang dapat terjadi.
