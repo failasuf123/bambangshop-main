@@ -25,7 +25,6 @@ The subscribers are another Rocket instances, so the notification will be sent u
 
 ## API Documentations
 
-
 After you download the Postman Collection, you can try the endpoints inside "BambangShop Publisher" folder.
 This Postman collection also contains endpoints that you need to implement later on (the `Notification` feature).
 
