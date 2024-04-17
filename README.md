@@ -78,6 +78,10 @@ This is the place for you to write reflections:
 
 #### Reflection Publisher-1
 
+1. Dalam pola Observer, antarmuka atau trait digunakan   untuk memungkinkan objek-objek yang berbeda untuk berperan sebagai pengamat (observer) dan menerima pembaruan dari subjek (subject) tanpa bergantung pada implementasi konkret subjek. Dalam kasus BambangShop, meskipun Rust tidak memiliki konsep antarmuka secara langsung seperti bahasa lain, penggunaan trait untuk menggambarkan perilaku Subscriber masih dapat bermanfaat. Dengan menggunakan trait, saya dapat menentukan metode-metode yang diperlukan untuk pengamat (seperti notify) dan memastikan bahwa semua implementasi Subscriber mengikuti pola yang diharapkan. Namun, jika hanya ada satu jenis pengamat (Subscriber) yang tidak memerlukan variasi perilaku, menggunakan sebuah struct Model tunggal juga sudah cukup.
+2. Penggunaan Vec (list) atau DashMap (map/dictionary) untuk menyimpan ID yang unik (seperti id in Program dan url in Subscriber) tergantung pada kebutuhan dan kompleksitas aplikasi. Jika kita  hanya memiliki beberapa elemen yang harus unik, Vec dapat menjadi pilihan yang cukup baik karena sederhana dan mudah digunakan. Namun, jika kita memerlukan kemampuan pencarian yang lebih efisien dan pengelolaan yang lebih kuat atas elemen-elemen yang unik, menggunakan DashMap atau struktur data lainnya yang lebih canggih mungkin lebih tepat.
+3. Dalam konteks thread safety, Rust memang menekankan keamanan dan membatasi kemungkinan kesalahan yang terjadi karena operasi konkurensi. Penggunaan DashMap (atau HashMap yang aman dari segi thread) adalah pilihan yang baik untuk mengelola koleksi data yang dibagikan antara thread karena memastikan keselamatan akses ke data tersebut. Pola Singleton, sementara itu, dapat digunakan untuk memastikan bahwa hanya ada satu instance dari sebuah struktur yang dibuat, namun itu tidak menjamin thread safety secara otomatis. Jadi, penggunaan DashMap atau struktur data serupa untuk koleksi thread-safe adalah langkah yang tepat dalam konteks Rust.
+
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
