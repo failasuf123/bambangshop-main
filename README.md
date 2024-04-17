@@ -81,5 +81,27 @@ This is the place for you to write reflections:
 3. Dalam konteks thread safety, Rust memang menekankan keamanan dan membatasi kemungkinan kesalahan yang terjadi karena operasi konkurensi. Penggunaan DashMap (atau HashMap yang aman dari segi thread) adalah pilihan yang baik untuk mengelola koleksi data yang dibagikan antara thread karena memastikan keselamatan akses ke data tersebut. Pola Singleton, sementara itu, dapat digunakan untuk memastikan bahwa hanya ada satu instance dari sebuah struktur yang dibuat, namun itu tidak menjamin thread safety secara otomatis. Jadi, penggunaan DashMap atau struktur data serupa untuk koleksi thread-safe adalah langkah yang tepat dalam konteks Rust.
 
 #### Reflection Publisher-2
+1. Dalam pola MVC tradisional, Model bertanggung jawab atas penyimpanan data dan logika bisnis. Namun, dengan memisahkan "Service" dan "Repository" dari Model, kita dapat mencapai beberapa manfaat:
+
+  - Pemisahan Tanggung Jawab: "Service" bertanggung jawab atas logika bisnis yang lebih kompleks, seperti pengelolaan alur kerja, validasi, dan operasi bisnis lainnya. Di sisi lain, "Repository" bertanggung jawab atas operasi operasi CRUD (Create, Read, Update, Delete) terhadap penyimpanan data.
+  - Fleksibilitas dan Penggantian: Dengan memisahkan "Service" dan "Repository", kita dapat dengan mudah mengganti implementasi "Repository" tanpa mengubah logika bisnis dalam "Service". Misalnya, kita dapat beralih dari database SQL ke NoSQL tanpa mempengaruhi layanan yang menggunakannya.
+  - Pembacaan Kode yang Lebih Mudah: Pemisahan ini memungkinkan kode menjadi lebih terorganisir dan mudah dibaca, karena setiap komponen memiliki fokusnya sendiri.
+
+2. Jika kita hanya menggunakan Model dalam pola MVC, maka semua logika bisnis, operasi CRUD, validasi, dan operasi lainnya akan dikumpulkan dalam satu tempat. Hal ini dapat menyebabkan beberapa masalah:
+
+  - Overload dalam Model: Model menjadi terlalu berat karena harus menangani semua aspek aplikasi, membuatnya sulit dipahami dan dikelola.
+  - Kode yang Sulit Didebug dan Diuji: Ketika segala sesuatu terkait dengan data dan logika bisnis dikemas dalam Model, debugging dan pengujian menjadi lebih sulit karena sulit untuk mengisolasi masalah dan menyusun pengujian yang terfokus.
+  - Ketergantungan yang Tinggi: Implementasi terkait database dan operasi CRUD menjadi terikat erat dengan logika bisnis, sehingga sulit untuk mengganti atau memperbarui satu bagian tanpa memengaruhi yang lain.
 
 #### Reflection Publisher-3
+1. Dalam kasus tutorial ini, kita menggunakan variasi model Push dari Pola Observer. Hal ini terjadi karena pengirim (BambangShop) secara aktif mengirimkan notifikasi kepada pelanggan (Subscriber) ketika terjadi peristiwa yang relevan, seperti pembuatan, promosi, atau penghapusan produk.
+
+2. Jika kita menggunakan variasi model Pull dari Pola Observer, di mana pelanggan menarik data dari pengirim saat diperlukan, berikut adalah kelebihan dan kekurangannya:
+
+    Kelebihan:
+      - Penyampaian Data yang Efisien: Dalam model Pull, pelanggan hanya akan meminta data ketika mereka membutuhkannya, mengurangi jumlah permintaan yang tidak perlu.
+      - Kontrol Lebih Besar: Pelanggan memiliki lebih banyak kontrol atas data yang diterimanya, dapat meminta data spesifik yang mereka inginkan.
+
+    Kekurangan:
+      - Penundaan Respons: Jika terdapat banyak pelanggan yang menarik data secara bersamaan, dapat terjadi penundaan dalam respons karena pengirim harus menanggapi permintaan setiap pelanggan.
+      - Kesulitan Sinkronisasi: Mengelola keadaan sinkronisasi antara pengirim dan pelanggan dalam model Pull dapat lebih rumit, terutama jika terdapat perubahan serentak yang harus disampaikan kepada banyak pelanggan.
