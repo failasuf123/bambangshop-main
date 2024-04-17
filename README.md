@@ -30,7 +30,7 @@ This Postman collection also contains endpoints that you need to implement later
 
 Postman is an installable client that you can use to test web endpoints using HTTP request.
 You can also make automated functional testing scripts for REST API projects using this client.
-You can install Postman via this website: https://www.postman.com/downloads/
+You can install Postman via this website
 
 ## How to Run in Development Environment
 1.  Set up environment variables first by creating `.env` file.
@@ -46,7 +46,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [ ] Clone  to a new repository.
 -   **STAGE 1: Implement models and repositories**
     -   [ ] Commit: `Create Subscriber model struct.`
     -   [ ] Commit: `Create Notification model struct.`
